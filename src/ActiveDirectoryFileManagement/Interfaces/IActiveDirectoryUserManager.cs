@@ -6,7 +6,7 @@ namespace ActiveDirectoryFileManagement.Interfaces;
 /// <summary>
 /// Defines the contract for managing users in Active Directory, including retrieving and updating user details.
 /// </summary>
-public interface IActiveDirectoryManager
+public interface IActiveDirectoryUserManager
 {
 	/// <summary>
 	/// Retrieves a DirectoryEntry object for a user based on their SAM account name.

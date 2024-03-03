@@ -3,12 +3,16 @@ using ActiveDirectoryFileManagement.Interfaces;
 using ActiveDirectoryFileManagement.Models;
 
 namespace ActiveDirectoryFileManagement.Services;
-public class ActiveDirectoryManager : IActiveDirectoryManager
+
+/// <summary>
+/// Manags users in Active Directory, including retrieving and updating user details.
+/// </summary>
+public class ActiveDirectoryUserManager : IActiveDirectoryUserManager
 {
 	private readonly ActiveDirectorySettings _activeDirectorySettings;
 	private readonly string _ldapPath = string.Empty;
 
-	public ActiveDirectoryManager(ActiveDirectorySettings activeDirectorySettings)
+	public ActiveDirectoryUserManager(ActiveDirectorySettings activeDirectorySettings)
 	{
 		_activeDirectorySettings = activeDirectorySettings;
 		var domainParts = _activeDirectorySettings.Domain.Split(".");
