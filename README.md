@@ -465,3 +465,53 @@ string path = @"C:\ExampleFile.txt";
 bool exists = fileService.IsExists(path);
 Console.WriteLine(exists); // Outputs: true or false
 ```
+
+### Extension Method for IServiceCollection
+The ServiceCollectionExtensions class defines extension methods for the IServiceCollection interface. This interface is a part of the Microsoft.Extensions.DependencyInjection namespace, which is the DI container used in .NET Core and ASP.NET Core applications. By adding extension methods to IServiceCollection, you make it easy to register your custom services and configurations in the DI container, thereby decoupling the configuration from the application startup logic.
+
+#### Methods Overview  
+- AddActiveDirectoryFileManagementServices with Parameters:  
+This method allows for configuring Active Directory settings directly through parameters (userName, password, domain). It creates an instance of ActiveDirectorySettings with these parameters and registers it as a singleton in the service collection. This means only one instance of ActiveDirectorySettings will be created and used throughout the application lifecycle.  
+It then calls the parameterless AddActiveDirectoryFileManagementServices method to register additional services.  
+
+- AddActiveDirectoryFileManagementServices with ActiveDirectorySettings:  
+This overload allows passing an already created ActiveDirectorySettings object. This is useful when the settings are pre-configured or loaded from another source. It registers the provided ActiveDirectorySettings instance as a singleton in the service collection.  
+It also delegates to the parameterless AddActiveDirectoryFileManagementServices to register the additional services.  
+
+- AddActiveDirectoryFileManagementServices (Parameterless):  
+This method registers the core services related to Active Directory file management as scoped services. Scoped services are created once per request within the scope. This is ideal for services such as IFileService, IDirectoryService, IActiveDirectoryService, and IActiveDirectoryUserManager, which may maintain state or use resources like database connections or file streams that are request-specific.  
+
+#### Decoupling through DI  
+Decoupling is achieved by abstracting the concrete implementations of services behind interfaces. When a class requires one of these services, it does not instantiate them directly but rather declares a dependency on the interface. The DI container is responsible for injecting these dependencies at runtime. This separation of concerns makes the system more flexible and easier to maintain.  
+
+Example Usage  
+Imagine you have a controller in an ASP.NET Core application that needs to manage files in an Active Directory environment:  
+```csharp
+public class FileManagerController : ControllerBase
+{
+    private readonly IFileService _fileService;
+
+    public FileManagerController(IFileService fileService)
+    {
+        _fileService = fileService;
+    }
+
+    // Actions that use _fileService to manage files
+}
+```
+
+During application startup, you would configure your services like this:  
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddActiveDirectoryFileManagementServices("username", "password", "domain");
+    // Or using an ActiveDirectorySettings instance
+    // var settings = new ActiveDirectorySettings("username", "password", "domain");
+    // services.AddActiveDirectoryFileManagementServices(settings);
+    
+    // Add other services like controllers
+    services.AddControllers();
+}
+```
+
+By registering services in this manner, you effectively decouple the FileManagerController from the concrete implementations of IFileService, allowing for more modular, testable, and maintainable code.  
