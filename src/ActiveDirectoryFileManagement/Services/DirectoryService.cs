@@ -81,7 +81,6 @@ public class DirectoryService : IDirectoryService
 		Directory.Delete(path, true);
 	}
 
-
 	/// <summary>
 	/// Retrieves the files from the specified path under the context of an Active Directory user.
 	/// </summary>
