@@ -154,3 +154,58 @@ class Program
     }
 }
 ```
+
+# ActiveDirectoryService
+The `ActiveDirectoryService` class is designed to facilitate the execution of actions under the context of an impersonated Active Directory (AD) user. This functionality is crucial in scenarios where actions need to be performed with the permissions of a specific AD user, rather than the permissions of the application's service account.
+
+## Prerequisites
+
+Before using the `ActiveDirectoryService`, ensure that:
+
+- You have the necessary Active Directory permissions to impersonate a user.
+- The application has a reference to the namespace or project where `ActiveDirectoryService` and its dependencies are defined.
+- You have configured `ActiveDirectorySettings` with valid AD credentials and domain information.
+
+## Usage
+
+### Instantiating ActiveDirectoryService
+
+To use the `ActiveDirectoryService`, first instantiate it with appropriate `ActiveDirectorySettings`:
+
+```csharp
+var activeDirectorySettings = new ActiveDirectorySettings
+{
+    Username = "ADUsername",
+    Domain = "ADDomain",
+    Password = "ADPassword"
+};
+
+var activeDirectoryService = new ActiveDirectoryService(activeDirectorySettings);
+```
+
+### Executing an Action with a Return Type
+
+To execute a function that returns a result under the impersonated user context, use `ImpersonateUserAndRunAction<TResult>`:
+```csharp
+var result = activeDirectoryService.ImpersonateUserAndRunAction(() =>
+{
+    // Place your code here that needs to be run under the impersonated user.
+    // For example, accessing a file on a network share that requires AD user permissions.
+    return "Success";
+});
+
+Console.WriteLine(result); // Outputs: Success
+```
+
+### Executing an Action without a Return Type
+
+To execute an action without expecting a return value, use ImpersonateUserAndRunAction:
+
+```csharp
+activeDirectoryService.ImpersonateUserAndRunAction(() =>
+{
+    // Place your action code here.
+    // For example, writing to a log file on a network share.
+});
+```
+
