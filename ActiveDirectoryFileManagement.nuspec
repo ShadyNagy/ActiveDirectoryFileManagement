@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>ActiveDirectoryFileManagement</id>
+    <title>Active Directory File Management</title>
+    <version>1.0.0</version>
+    <authors>ShadyNagy</authors>
+    <description>
+      Active Directory File Management Package
+    </description>
+    <dependencies>
+      <group targetFramework=".NET7.0">
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="7.0.0" />
+      </group>
+    </dependencies>
+    <packageType name="Dependency" />
+    <language>en-US</language>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/ShadyNagy/ActiveDirectoryFileManagement</projectUrl>
+    <releaseNotes>ActiveDirectoryFileManagement Package.</releaseNotes>
+    <tags>Api, ActiveDirectory, FileManagement</tags>
+    <icon>icon.png</icon>
+    <copyright>Copyright 2024 (c) ShadyNagy. All rights reserved.</copyright>
+    <readme>README.md</readme>
+  </metadata>
+  <files>
+    <file src="src\ActiveDirectoryFileManagement\bin\Release\net7.0\ActiveDirectoryFileManagement.dll" target="lib\net7.0" />
+    <file src="icon.png" />
+    <file src="README.md" />
+  </files>
+</package>
