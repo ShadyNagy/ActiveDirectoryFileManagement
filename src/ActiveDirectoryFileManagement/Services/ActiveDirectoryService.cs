@@ -17,6 +17,7 @@ public class ActiveDirectoryService : IActiveDirectoryService
 	private const int LOGON32_LOGON_INTERACTIVE = 2;
 	private const int LOGON32_PROVIDER_DEFAULT = 0;
 
+
 	/// <summary>
 	/// Initializes a new instance of the <see cref="ActiveDirectoryService"/> class.
 	/// </summary>
