@@ -1,4 +1,4 @@
-[![publish to nuget](https://github.com/ShadyNagy/ActiveDirectoryFileManagement/actions/workflows/nugt-publish.yml/badge.svg)](https://github.com/ShadyNagy/ActiveDirectoryFileManagement/actions/workflows/nugt-publish.yml)
+[![publish to nuget](https://github.com/ShadyNagy/ActiveDirectoryFileManagement/actions/workflows/nuget-publish.yml/badge.svg)](https://github.com/ShadyNagy/ActiveDirectoryFileManagement/actions/workflows/nuget-publish.yml)
 [![ActiveDirectoryFileManagement on NuGet](https://img.shields.io/nuget/v/ActiveDirectoryFileManagement?label=ActiveDirectoryFileManagement)](https://www.nuget.org/packages/ActiveDirectoryFileManagement/)
 [![NuGet](https://img.shields.io/nuget/dt/ActiveDirectoryFileManagement)](https://www.nuget.org/packages/ActiveDirectoryFileManagement)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/ShadyNagy/ActiveDirectoryFileManagement/blob/main/LICENSE)
