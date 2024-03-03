@@ -209,7 +209,7 @@ activeDirectoryService.ImpersonateUserAndRunAction(() =>
 });
 ```
 
-# DirectoryService Class
+# DirectoryService
 
 The `DirectoryService` class provides functionalities to interact with the file system under the context of an Active Directory (AD) user or directly. It leverages an `IActiveDirectoryService` for operations requiring AD user impersonation.
 
@@ -331,4 +331,137 @@ IEnumerable<string> directories = directoryService.GetDirectories(path);
 // Retrieves all subdirectories in the specified directory.
 ```
 
+# FileService
+The `FileService` class provides functionalities to manage files, including creating, overwriting, deleting, and reading files, with operations that can be performed under the context of an Active Directory (AD) user or directly.
 
+## Prerequisites
+- An implementation of `IActiveDirectoryService` is needed, properly configured for AD user impersonation.
+- Ensure the application has permissions to manage files on the file system.
+
+## Initialization
+To use the `FileService`, instantiate it by passing an `IActiveDirectoryService` instance to its constructor.
+```csharp
+IActiveDirectoryService activeDirectoryService = new ActiveDirectoryService(activeDirectorySettings);
+FileService fileService = new FileService(activeDirectoryService);
+```
+
+### Creating New Files
+#### CreateUnderUser
+Creates a new file with specified content under the context of an AD user.
+```csharp
+string path = @"C:\ExampleFile.txt";
+string content = "Hello, World!";
+fileService.CreateUnderUser(path, content);
+// Creates a new file with the specified content, using the permissions of the impersonated AD user.
+```
+
+#### Create
+Creates a new file with specified content without AD user impersonation.
+```csharp
+string path = @"C:\ExampleFile.txt";
+string content = "Hello, World!";
+fileService.Create(path, content);
+// Creates a new file at the specified path with the given content.
+```
+
+### Overwriting Existing Files
+#### OverwriteUnderUser
+Overwrites an existing file with specified content under the context of an AD user.
+```csharp
+string path = @"C:\ExampleFile.txt";
+string newContent = "New Content";
+fileService.OverwriteUnderUser(path, newContent);
+// Overwrites the file with new content, using the permissions of the impersonated AD user.
+```
+
+#### Overwrite
+Overwrites an existing file with specified content without AD user impersonation.
+```csharp
+string path = @"C:\ExampleFile.txt";
+string newContent = "New Content";
+fileService.Overwrite(path, newContent);
+// Overwrites the file at the specified path with the new content.
+```
+
+### Deleting Files
+#### DeleteUnderUser
+Deletes a file at the specified path under the context of an AD user.
+```csharp
+string path = @"C:\ExampleFile.txt";
+fileService.DeleteUnderUser(path);
+// Deletes the file using the permissions of the impersonated AD user.
+```
+
+#### Delete
+Deletes a file at the specified path without AD user impersonation.
+```csharp
+string path = @"C:\ExampleFile.txt";
+fileService.Delete(path);
+// Deletes the file at the specified path.
+```
+
+### Reading File Contents
+#### ReadUnderUser
+Reads the contents of a file as a byte array under the context of an AD user.
+```csharp
+string path = @"C:\ExampleFile.txt";
+byte[] content = fileService.ReadUnderUser(path);
+// Reads the file contents into a byte array, using the permissions of the impersonated AD user.
+```
+
+#### Read
+Reads the contents of a file as a byte array without AD user impersonation.
+```csharp
+string path = @"C:\ExampleFile.txt";
+byte[] content = fileService.Read(path);
+// Reads the file contents into a byte array at the specified path.
+```
+
+#### ReadTextUnderUser
+Reads the contents of a file as a string under the context of an AD user.
+```csharp
+string path = @"C:\ExampleFile.txt";
+string content = fileService.ReadTextUnderUser(path);
+// Reads the file contents as a string, using the permissions of the impersonated AD user.
+```
+
+#### ReadText
+Reads the contents of a file as a string without AD user impersonation.
+```csharp
+string path = @"C:\ExampleFile.txt";
+string content = fileService.ReadText(path);
+// Reads the file contents as a string at the specified path.
+```
+
+#### ReadLinesUnderUser
+Reads the lines of a file as an enumerable collection of strings under the context of an AD user.
+```csharp
+string path = @"C:\ExampleFile.txt";
+IEnumerable<string> lines = fileService.ReadLinesUnderUser(path);
+// Reads the file lines into a collection of strings, using the permissions of the impersonated AD user.
+```
+
+#### ReadLines
+Reads the lines of a file as an enumerable collection of strings without AD user impersonation.
+```csharp
+string path = @"C:\ExampleFile.txt";
+IEnumerable<string> lines = fileService.ReadLines(path);
+// Reads the file lines into a collection of strings at the specified path.
+```
+
+### Checking File Existence
+#### IsExistsUnderUser
+Checks if a file exists at the specified path under the context of an AD user.
+```csharp
+string path = @"C:\ExampleFile.txt";
+bool exists = fileService.IsExistsUnderUser(path);
+Console.WriteLine(exists); // Outputs: true or false
+```
+
+#### IsExists
+Checks if a file exists at the specified path without AD user impersonation.
+```csharp
+string path = @"C:\ExampleFile.txt";
+bool exists = fileService.IsExists(path);
+Console.WriteLine(exists); // Outputs: true or false
+```
