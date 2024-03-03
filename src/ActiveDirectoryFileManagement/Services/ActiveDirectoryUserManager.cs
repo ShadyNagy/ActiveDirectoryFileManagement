@@ -5,7 +5,7 @@ using ActiveDirectoryFileManagement.Models;
 namespace ActiveDirectoryFileManagement.Services;
 
 /// <summary>
-/// Manags users in Active Directory, including retrieving and updating user details.
+/// Manages users in Active Directory, including retrieving and updating user details.
 /// </summary>
 public class ActiveDirectoryUserManager : IActiveDirectoryUserManager
 {
