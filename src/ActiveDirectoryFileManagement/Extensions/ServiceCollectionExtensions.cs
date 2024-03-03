@@ -29,6 +29,7 @@ public static class ServiceCollectionExtensions
 		services.AddScoped<IFileService, FileService>();
 		services.AddScoped<IDirectoryService, DirectoryService>();
 		services.AddScoped<IActiveDirectoryService, ActiveDirectoryService>();
+		services.AddScoped<IActiveDirectoryManager, ActiveDirectoryManager>();
 
 		return services;
 	}
