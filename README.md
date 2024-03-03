@@ -1,10 +1,10 @@
 # ActiveDirectoryFileManagement
 
-# Active Directory Manager Documentation
+# Active Directory Manager
 
 The `IActiveDirectoryManager` interface defines a contract for managing users within Active Directory. This includes capabilities to retrieve user details, update user attributes, and fetch specific user entries based on their SAM account name.
 
-## Interface Methods
+## Methods
 
 ### GetUser
 
