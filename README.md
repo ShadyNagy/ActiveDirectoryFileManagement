@@ -3,6 +3,10 @@
 [![NuGet](https://img.shields.io/nuget/dt/ActiveDirectoryFileManagement)](https://www.nuget.org/packages/ActiveDirectoryFileManagement)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/ShadyNagy/ActiveDirectoryFileManagement/blob/main/LICENSE)
 [![paypal](https://img.shields.io/badge/PayPal-tip%20me-green.svg?logo=paypal)](https://www.paypal.me/shadynagy)
+<a href="https://ShadyNagy.com">
+    <img src="https://img.shields.io/badge/Visit-My%20Website-blue?logo=internetexplorer" alt="Visit My Website">
+</a>
+
 
 # Active Directory Manager
 
