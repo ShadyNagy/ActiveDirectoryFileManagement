@@ -19,13 +19,13 @@
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/ShadyNagy/ActiveDirectoryFileManagement</projectUrl>
     <releaseNotes>ActiveDirectoryFileManagement Package.</releaseNotes>
-    <tags>Api, ActiveDirectory, FileManagement</tags>
+    <tags>ActiveDirectory, FileManagement</tags>
     <icon>icon.png</icon>
     <copyright>Copyright 2024 (c) ShadyNagy. All rights reserved.</copyright>
     <readme>README.md</readme>
   </metadata>
   <files>
-    <file src="src\ActiveDirectoryFileManagement\bin\Release\net7.0\ActiveDirectoryFileManagement.dll" target="lib\net7.0" />
+    <file src="src\ActiveDirectoryFileManagement\bin\Release\net7.0-windows\ActiveDirectoryFileManagement.dll" target="lib\net7.0" />
     <file src="icon.png" />
     <file src="README.md" />
   </files>
