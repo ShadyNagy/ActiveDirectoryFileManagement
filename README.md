@@ -209,3 +209,126 @@ activeDirectoryService.ImpersonateUserAndRunAction(() =>
 });
 ```
 
+# DirectoryService Class
+
+The `DirectoryService` class provides functionalities to interact with the file system under the context of an Active Directory (AD) user or directly. It leverages an `IActiveDirectoryService` for operations requiring AD user impersonation.
+
+## Prerequisites
+
+- An implementation of `IActiveDirectoryService` is required, properly configured for AD user impersonation.
+- Ensure the application has permissions to create, delete, and access directories and files on the file system.
+
+## Initialization
+
+To initialize a `DirectoryService` instance, you need to pass an `IActiveDirectoryService` instance to its constructor.
+
+```csharp
+IActiveDirectoryService activeDirectoryService = new ActiveDirectoryService(activeDirectorySettings);
+DirectoryService directoryService = new DirectoryService(activeDirectoryService);
+```
+
+### Creating Directories
+#### CreateUnderUser
+Creates a directory at the specified path under the context of an AD user.
+```csharp
+string path = @"C:\ExampleDirectory";
+directoryService.CreateUnderUser(path);
+// The directory is created at the specified path, using the permissions of the impersonated AD user.
+```
+
+#### Create
+Creates a directory at the specified path without AD user impersonation.
+```csharp
+string path = @"C:\ExampleDirectory";
+directoryService.Create(path);
+// The directory is created at the specified path.
+```
+
+### Checking Directory Existence
+#### IsExistsUnderUser
+Checks if a directory exists at the specified path under the context of an AD user.
+```csharp
+string path = @"C:\ExampleDirectory";
+bool exists = directoryService.IsExistsUnderUser(path);
+Console.WriteLine(exists); // true or false
+```
+
+#### IsExists
+Checks if a directory exists at the specified path without AD user impersonation.
+```csharp
+string path = @"C:\ExampleDirectory";
+bool exists = directoryService.IsExists(path);
+Console.WriteLine(exists); // true or false
+```
+
+### Deleting Directories
+#### DeleteUnderUser
+Deletes a directory at the specified path under the context of an AD user.
+```csharp
+string path = @"C:\ExampleDirectory";
+directoryService.DeleteUnderUser(path);
+// The directory at the specified path is deleted using the permissions of the impersonated AD user.
+```
+
+#### Delete
+Deletes a directory at the specified path without AD user impersonation.
+```csharp
+string path = @"C:\ExampleDirectory";
+directoryService.Delete(path);
+// The directory at the specified path is deleted.
+```
+
+### Retrieving Files
+#### GetFilesUnderUser
+Retrieves the files from the specified path under the context of an AD user.
+```csharp
+string path = @"C:\ExampleDirectory";
+IEnumerable<string> files = directoryService.GetFilesUnderUser(path);
+// Retrieves all files in the specified directory using the permissions of the impersonated AD user.
+```
+
+#### GetFiles
+Retrieves the files from the specified path without AD user impersonation.
+```csharp
+string path = @"C:\ExampleDirectory";
+IEnumerable<string> files = directoryService.GetFiles(path);
+// Retrieves all files in the specified directory.
+```
+
+### Filtering Files by Extension
+#### GetFilesUnderUser with Extensions
+Retrieves files from the specified path under the context of an AD user, filtered by extensions.
+```csharp
+string path = @"C:\ExampleDirectory";
+string[] extensions = new[] { "txt", "docx" };
+IEnumerable<string> files = directoryService.GetFilesUnderUser(path, extensions);
+// Retrieves files with .txt and .docx extensions in the specified directory, using the permissions of the impersonated AD user.
+```
+
+#### GetFiles with Extensions
+Retrieves files from the specified path without AD user impersonation, filtered by extensions.
+```csharp
+string path = @"C:\ExampleDirectory";
+string[] extensions = new[] { "txt", "docx" };
+IEnumerable<string> files = directoryService.GetFiles(path, extensions);
+// Retrieves files with .txt and .docx extensions in the specified directory.
+```
+
+### Retrieving Directories
+#### GetDirectoriesUnderUser
+Retrieves the directories from the specified path under the context of an AD user.
+```csharp
+string path = @"C:\ExampleDirectory";
+IEnumerable<string> directories = directoryService.GetDirectoriesUnderUser(path);
+// Retrieves all subdirectories in the specified directory using the permissions of the impersonated AD user.
+```
+
+#### GetDirectories
+Retrieves the directories from the specified path without AD user impersonation.
+```csharp
+string path = @"C:\ExampleDirectory";
+IEnumerable<string> directories = directoryService.GetDirectories(path);
+// Retrieves all subdirectories in the specified directory.
+```
+
+
