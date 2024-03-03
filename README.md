@@ -70,11 +70,11 @@ Updates specified attributes for a user in Active Directory.
 void UpdateUserDetails(string samAccountName, ActiveDirectoryUserDetails userDetails);
 ```
 
-- Parameters
-samAccountName: The SAM account name of the user whose details are to be updated.
-userDetails: An ActiveDirectoryUserDetails object containing the attributes to update.
+- Parameters  
+samAccountName: The SAM account name of the user whose details are to be updated.  
+userDetails: An ActiveDirectoryUserDetails object containing the attributes to update.  
 
-Example for UpdateUserDetails
+Example for UpdateUserDetails  
 ```csharp
 class Program
 {
@@ -107,10 +107,10 @@ Retrieves detailed information about a user from Active Directory.
 ActiveDirectoryUserDetails GetUserDetails(string samAccountName);
 ```
 
-- Parameters
-samAccountName: The SAM account name of the user whose details are to be retrieved.
-- Returns
-An ActiveDirectoryUserDetails object containing the user's details.
+- Parameters  
+samAccountName: The SAM account name of the user whose details are to be retrieved.  
+- Returns  
+An ActiveDirectoryUserDetails object containing the user's details.  
 
 Example for GetUserDetails
 ```csharp
