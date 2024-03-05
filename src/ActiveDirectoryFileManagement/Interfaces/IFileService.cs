@@ -1,4 +1,6 @@
-﻿namespace ActiveDirectoryFileManagement.Interfaces;
+﻿using ActiveDirectoryFileManagement.Services;
+
+namespace ActiveDirectoryFileManagement.Interfaces;
 
 /// <summary>
 /// Defines a set of methods for file operations, including creation, deletion, reading, and checking existence,
@@ -156,4 +158,18 @@ public interface IFileService
 	/// <param name="path">The path of the file to check.</param>
 	/// <returns>true if the file exists; otherwise, false.</returns>
 	bool IsExists(string path);
+
+	/// <summary>
+	/// Moves file from path to another path under the context of an Active Directory user.
+	/// </summary>
+	/// <param name="sourcePath">The path of the file source.</param>
+	/// <param name="destinationPath">The path of the file destination.</param>
+	void MoveUnderUser(string sourcePath, string destinationPath);
+
+	/// <summary>
+	/// Moves file from path to another path.
+	/// </summary>
+	/// <param name="sourcePath">The path of the file source.</param>
+	/// <param name="destinationPath">The path of the file destination.</param>
+	void Move(string sourcePath, string destinationPath);
 }

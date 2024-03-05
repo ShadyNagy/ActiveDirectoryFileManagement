@@ -1,4 +1,5 @@
-﻿using ActiveDirectoryFileManagement.Interfaces;
+﻿using System.IO;
+using ActiveDirectoryFileManagement.Interfaces;
 
 namespace ActiveDirectoryFileManagement.Services;
 
@@ -338,5 +339,34 @@ public class FileService : IFileService
 	public bool IsExists(string path)
 	{
 		return File.Exists(path);
+	}
+
+	/// <summary>
+	/// Moves file from path to another path under the context of an Active Directory user.
+	/// </summary>
+	/// <param name="sourcePath">The path of the file source.</param>
+	/// <param name="destinationPath">The path of the file destination.</param>
+	public void MoveUnderUser(string sourcePath, string destinationPath)
+	{
+		_activeDirectoryService.ImpersonateUserAndRunAction(() =>
+		{
+			if (File.Exists(sourcePath))
+			{
+				File.Move(sourcePath, destinationPath);
+			}
+		});
+	}
+
+	/// <summary>
+	/// Moves file from path to another path.
+	/// </summary>
+	/// <param name="sourcePath">The path of the file source.</param>
+	/// <param name="destinationPath">The path of the file destination.</param>
+	public void Move(string sourcePath, string destinationPath)
+	{
+		if (File.Exists(sourcePath))
+		{
+			File.Move(sourcePath, destinationPath);
+		}
 	}
 }
