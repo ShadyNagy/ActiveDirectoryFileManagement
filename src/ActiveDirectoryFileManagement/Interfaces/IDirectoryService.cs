@@ -66,16 +66,18 @@ public interface IDirectoryService
 	/// </summary>
 	/// <param name="path">The directory path to search.</param>
 	/// <param name="extensions">An array of file extensions to filter the files. If null or empty, all files are returned.</param>
+	/// <param name="allExceptExtensions">If true then get all files but not these extensions and if false then get only files with these extensions.</param>
 	/// <returns>An enumerable collection of file paths.</returns>
-	IEnumerable<string> GetFilesUnderUser(string path, string[] extensions);
+	IEnumerable<string> GetFilesUnderUser(string path, string[] extensions, bool allExceptExtensions = false);
 
 	/// <summary>
 	/// Retrieves the files from the specified path.
 	/// </summary>
 	/// <param name="path">The directory path to search.</param>
 	/// <param name="extensions">An array of file extensions to filter the files. If null or empty, all files are returned.</param>
+	/// <param name="allExceptExtensions">If true then get all files but not these extensions and if false then get only files with these extensions.</param>
 	/// <returns>An enumerable collection of file paths.</returns>
-	IEnumerable<string> GetFiles(string path, string[] extensions);
+	IEnumerable<string> GetFiles(string path, string[] extensions, bool allExceptExtensions = false);
 
 	/// <summary>
 	/// Retrieves the directories from the specified path under the context of an Active Directory user.

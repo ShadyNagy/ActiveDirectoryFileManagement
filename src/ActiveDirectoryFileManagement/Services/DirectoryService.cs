@@ -107,10 +107,11 @@ public class DirectoryService : IDirectoryService
 	/// </summary>
 	/// <param name="path">The directory path to search.</param>
 	/// <param name="extensions">An array of file extensions to filter the files. If null or empty, all files are returned.</param>
+	/// <param name="allExceptExtensions">If true then get all files but not these extensions and if false then get only files with these extensions.</param>
 	/// <returns>An enumerable collection of file paths.</returns>
-	public IEnumerable<string> GetFilesUnderUser(string path, string[] extensions)
+	public IEnumerable<string> GetFilesUnderUser(string path, string[] extensions, bool allExceptExtensions = false)
 	{
-		return _activeDirectoryService.ImpersonateUserAndRunAction(() => GetFilesByExtensions(path, extensions));
+		return _activeDirectoryService.ImpersonateUserAndRunAction(() => allExceptExtensions? GetFilesByNotExtensions(path, extensions) : GetFilesByExtensions(path, extensions));
 	}
 
 	/// <summary>
@@ -118,10 +119,11 @@ public class DirectoryService : IDirectoryService
 	/// </summary>
 	/// <param name="path">The directory path to search.</param>
 	/// <param name="extensions">An array of file extensions to filter the files. If null or empty, all files are returned.</param>
+	/// <param name="allExceptExtensions">If true then get all files but not these extensions and if false then get only files with these extensions.</param>
 	/// <returns>An enumerable collection of file paths.</returns>
-	public IEnumerable<string> GetFiles(string path, string[] extensions)
+	public IEnumerable<string> GetFiles(string path, string[] extensions, bool allExceptExtensions = false)
 	{
-		return GetFilesByExtensions(path, extensions);
+		return allExceptExtensions? GetFilesByNotExtensions(path, extensions) : GetFilesByExtensions(path, extensions);
 	}
 
 	/// <summary>
@@ -149,5 +151,12 @@ public class DirectoryService : IDirectoryService
 		var extensionSet = new HashSet<string>(extensions.Select(ext => "." + ext), StringComparer.OrdinalIgnoreCase);
 		return Directory.EnumerateFiles(path)
 										.Where(file => extensionSet.Contains(Path.GetExtension(file)));
+	}
+
+	private IEnumerable<string> GetFilesByNotExtensions(string path, string[] extensions)
+	{
+		var extensionSet = new HashSet<string>(extensions.Select(ext => "." + ext), StringComparer.OrdinalIgnoreCase);
+		return Directory.EnumerateFiles(path)
+										.Where(file => !extensionSet.Contains(Path.GetExtension(file)));
 	}
 }
