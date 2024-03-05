@@ -107,7 +107,7 @@ public class DirectoryService : IDirectoryService
 	/// </summary>
 	/// <param name="path">The directory path to search.</param>
 	/// <param name="extensions">An array of file extensions to filter the files. If null or empty, all files are returned.</param>
-	/// <param name="allExceptExtensions">If true then get all files but not these extensions and if false then get only files with these extensions.</param>
+	/// <param name="allExceptExtensions">Specifies whether to retrieve all files excluding those with specified extensions (if true) or to retrieve only files with specified extensions (if false).</param>
 	/// <returns>An enumerable collection of file paths.</returns>
 	public IEnumerable<string> GetFilesUnderUser(string path, string[] extensions, bool allExceptExtensions = false)
 	{
@@ -119,7 +119,7 @@ public class DirectoryService : IDirectoryService
 	/// </summary>
 	/// <param name="path">The directory path to search.</param>
 	/// <param name="extensions">An array of file extensions to filter the files. If null or empty, all files are returned.</param>
-	/// <param name="allExceptExtensions">If true then get all files but not these extensions and if false then get only files with these extensions.</param>
+	/// <param name="allExceptExtensions">Specifies whether to retrieve all files excluding those with specified extensions (if true) or to retrieve only files with specified extensions (if false).</param>
 	/// <returns>An enumerable collection of file paths.</returns>
 	public IEnumerable<string> GetFiles(string path, string[] extensions, bool allExceptExtensions = false)
 	{
