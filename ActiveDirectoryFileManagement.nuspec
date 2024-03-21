@@ -18,6 +18,7 @@
     <language>en-US</language>
     <license type="expression">MIT</license>
     <projectUrl>https://github.com/ShadyNagy/ActiveDirectoryFileManagement</projectUrl>
+		<repository type="git" url="https://github.com/ShadyNagy/ActiveDirectoryFileManagement" />
     <releaseNotes>ActiveDirectoryFileManagement Package.</releaseNotes>
     <tags>ActiveDirectory, FileManagement</tags>
     <icon>icon.png</icon>
